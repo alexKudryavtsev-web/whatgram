@@ -6,7 +6,10 @@ import config from "config";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import { Server as SocketServer } from "socket.io";
+
 import WebSockets from "./utils/WebSockets.js";
+import errorMiddleware from "./middleware/error.middleware.js";
+import userRouter from "./routes/user.routes.js";
 
 const CORS_OPTIONS = {
   origin: config.get("CLIENT_URL"),
@@ -22,6 +25,10 @@ app.use(cookieParser());
 
 app.use(logger("dev"));
 app.use(cors(CORS_OPTIONS));
+
+app.use("/api/user", userRouter);
+
+app.use(errorMiddleware);
 
 const server = http.createServer(app);
 
