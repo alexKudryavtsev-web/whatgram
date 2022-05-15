@@ -4,6 +4,7 @@ import { v4 } from "uuid";
 
 import UserDto from "../dto/user.dto.js";
 import UserDetailsDto from "../dto/userDetails.dto.js";
+import RefreshTokenModel from "../models/refreshToken.model.js";
 import UserModel from "../models/user.model.js";
 
 import MailService from "./mail.service.js";
@@ -54,10 +55,8 @@ class UserService {
   }
 
   async deleteUser(userId) {
-    const user = await UserModel.findByIdAndDelete(userId);
-    const userDto = new UserDto(user);
-
-    return userDto;
+    await UserModel.findByIdAndDelete(userId);
+    await RefreshTokenModel.deleteRefreshToken(userId);
   }
 
   async readUserDetails(userId) {

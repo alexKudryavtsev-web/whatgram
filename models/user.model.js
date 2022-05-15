@@ -83,6 +83,14 @@ UserSchema.statics.findUserByActivationLink = async function (
   return user;
 };
 
-UserSchema.statics.findUserByEmail = async function (email) {};
+UserSchema.statics.findUserByEmail = async function (email) {
+  const user = await this.findOne({ email });
+
+  if (!user) {
+    throw ApiError.BadRequest(`User with ${email} email not found`);
+  }
+
+  return user;
+};
 
 export default model("User", UserSchema);

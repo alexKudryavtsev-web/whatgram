@@ -10,6 +10,7 @@ import { Server as SocketServer } from "socket.io";
 import WebSockets from "./utils/WebSockets.js";
 import errorMiddleware from "./middleware/error.middleware.js";
 import userRouter from "./routes/user.routes.js";
+import authRouter from "./routes/auth.routes.js";
 
 const CORS_OPTIONS = {
   origin: config.get("CLIENT_URL"),
@@ -27,6 +28,7 @@ app.use(logger("dev"));
 app.use(cors(CORS_OPTIONS));
 
 app.use("/api/user", userRouter);
+app.use("/api/auth", authRouter);
 
 app.use(errorMiddleware);
 

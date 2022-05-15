@@ -28,7 +28,8 @@ class UserController {
 
   async updateUser(req, res, next) {
     try {
-      const { userId, firstName, lastName, description, contacts } = req.body;
+      const { userId } = req.user;
+      const { firstName, lastName, description, contacts } = req.body;
 
       const userData = await UserService.updateUser(
         userId,
@@ -46,10 +47,13 @@ class UserController {
 
   async deleteUser(req, res, next) {
     try {
-      const { userId } = req.body;
-      const userData = await UserService.deleteUser(userId);
+      const { userId } = req.user;
 
-      return res.json({ user: userData });
+      await UserService.deleteUser(userId);
+
+      res.clearCookie("refreshToken");
+
+      return res.status(201).end();
     } catch (error) {
       next(error);
     }
