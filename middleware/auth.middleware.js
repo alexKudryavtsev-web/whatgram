@@ -16,6 +16,7 @@ async function authMiddleware(req, res, next) {
 
     req.user = {
       userId: dataFromToken.userId,
+      username: dataFromToken.username,
       email: dataFromToken.email,
     };
 

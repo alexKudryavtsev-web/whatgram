@@ -10,14 +10,14 @@ const UserSchema = new Schema(
       required: true,
       unique: true,
     },
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     firstName: String,
     lastName: String,
     description: String,
-    contacts: {
-      type: [Schema.Types.ObjectId],
-      ref: "User",
-      default: [],
-    },
     password: String,
     activationUserLink: {
       type: String,
@@ -38,20 +38,28 @@ const UserSchema = new Schema(
 UserSchema.statics.createUser = async function (
   email,
   password,
+  username,
   firstName,
   lastName,
   description,
   activationUserLink
 ) {
-  const candidate = await this.findOne({ email });
+  const candidateByEmail = await this.findOne({ email });
 
-  if (candidate) {
+  if (candidateByEmail) {
     throw ApiError.BadRequest(`User with ${email} email already exists`);
+  }
+
+  const candidateByUsername = await this.findOne({ username });
+
+  if (candidateByUsername) {
+    throw ApiError.BadRequest(`User with ${username} username already exists`);
   }
 
   const user = await this.create({
     email,
     password,
+    username,
     firstName,
     lastName,
     description,
@@ -88,6 +96,16 @@ UserSchema.statics.findUserByEmail = async function (email) {
 
   if (!user) {
     throw ApiError.BadRequest(`User with ${email} email not found`);
+  }
+
+  return user;
+};
+
+UserSchema.statics.findUserByUsername = async function (username) {
+  const user = await this.findOne({ username });
+
+  if (!user) {
+    throw ApiError.BadRequest(`User with ${username} username not found`);
   }
 
   return user;

@@ -23,14 +23,14 @@ class MailService {
     });
   }
 
-  sendActivationMail(to, firstname, link) {
+  sendActivationMail(to, appeal, link) {
     this.transporter.sendMail({
       from: config.get("SMTP_USER"),
       to,
       subject: `Whatgram: activation link`,
       html: `
       <div>
-      <h2>Hello, ${firstname}. To activate follow the link:</h2>
+      <h2>Hello, ${appeal}. To activate follow the link:</h2>
       <a style="font-family: Consolas, 'Courier New', monospace; text-decoration: none; appearance: button;cursor:pointer;" href="${link}">${link}</a>
       <h4>If this is not your letter, then ignore it :)</h4>
       </div>

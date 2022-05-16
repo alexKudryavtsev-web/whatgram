@@ -1,19 +1,19 @@
 class UserDto {
   email;
   userId;
+  username;
   firstName;
   lastName;
   description;
-  contacts;
   isActivated;
 
   constructor(model) {
     this.email = model.email;
     this.userId = model._id;
+    this.username = model.username;
     this.firstName = model.firstName;
     this.lastName = model.lastName;
     this.description = model.description;
-    this.contacts = model.contacts;
     this.isActivated = model.isActivated;
   }
 }

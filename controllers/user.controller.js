@@ -7,6 +7,7 @@ class UserController {
       const {
         email,
         password,
+        username,
         firstName = "",
         lastName = "",
         description = "",
@@ -15,6 +16,7 @@ class UserController {
       const userData = await UserService.createUser(
         email,
         password,
+        username,
         firstName,
         lastName,
         description
@@ -29,14 +31,13 @@ class UserController {
   async updateUser(req, res, next) {
     try {
       const { userId } = req.user;
-      const { firstName, lastName, description, contacts } = req.body;
+      const { firstName, lastName, description } = req.body;
 
       const userData = await UserService.updateUser(
         userId,
         firstName,
         lastName,
-        description,
-        contacts
+        description
       );
 
       return res.json({ user: userData });
@@ -53,7 +54,7 @@ class UserController {
 
       res.clearCookie("refreshToken");
 
-      return res.status(201).end();
+      return res.status(200).end();
     } catch (error) {
       next(error);
     }

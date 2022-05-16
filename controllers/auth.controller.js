@@ -23,13 +23,12 @@ class AuthController {
   async logout(req, res, next) {
     try {
       const { userId } = req.user;
-      console.log(userId);
 
       await AuthService.logout(userId);
 
       res.clearCookie("refreshToken");
 
-      return res.status(201).end();
+      return res.status(200).end();
     } catch (error) {
       next(error);
     }
