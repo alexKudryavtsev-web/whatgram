@@ -30,8 +30,8 @@ class AuthService {
     return { tokens, user: userDto };
   }
 
-  async logout(userId) {
-    await RefreshTokenModel.deleteRefreshToken(userId);
+  async logout(refreshToken) {
+    await RefreshTokenModel.findByRefreshToken(refreshToken);
   }
 
   async refresh(refreshToken) {

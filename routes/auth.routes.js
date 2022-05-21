@@ -8,8 +8,8 @@ const authRouter = new Router();
 
 authRouter
   .post("/login", loginValidator, validationMiddleware, AuthController.login)
-  .post("/logout", authMiddleware, AuthController.logout)
-  .get("/refresh", authMiddleware, AuthController.refresh)
+  .post("/logout", AuthController.logout)
+  .get("/refresh", AuthController.refresh)
   .get("/test", authMiddleware, (req, res) => res.json(req.user));
 
 export default authRouter;

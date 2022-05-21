@@ -32,6 +32,8 @@ app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/contact", contactRouter);
 
+app.get("/test", (req, res) => res.json("YES"));
+
 app.use(errorMiddleware);
 
 const server = http.createServer(app);
