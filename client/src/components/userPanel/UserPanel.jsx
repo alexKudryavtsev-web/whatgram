@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function UserPanel() {
   return (
-    <Flex>
+    <Flex marginBottom={2}>
       <Button
         as={Link}
         to="/contacts"

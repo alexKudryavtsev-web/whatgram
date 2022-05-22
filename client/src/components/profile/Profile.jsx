@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Image, Text } from "@chakra-ui/react";
 import { FaEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -32,14 +32,12 @@ function Profile() {
   return (
     <Box>
       <Flex align="center" justify="flex-end">
-        <Button
+        <IconButton
           marginRight={2}
-          leftIcon={<FaEdit />}
+          icon={<FaEdit />}
           onClick={() => navigate("/edit")}
-          colorScheme="teal"
-        >
-          edit
-        </Button>
+          variant="ghost"
+        />
       </Flex>
       <Flex justify="center" align="center" flexWrap="wrap">
         <Box>
