@@ -6,6 +6,7 @@ import AboutPage from "../pages/AboutPage.jsx";
 import UserPage from "../pages/UserPage.jsx";
 import ContactsPage from "../pages/ContactsPage.jsx";
 import DialogPage from "../pages/DialogPage.jsx";
+import EditProfilePage from "../pages/EditProfilePage.jsx";
 
 const COMMON_ROUTES = [
   { path: "about", element: <AboutPage /> },
@@ -27,6 +28,7 @@ const PRIVATE_ROUTES = [
       { path: "contacts", element: <ContactsPage /> },
       { path: "dialog/:dialogId", element: <DialogPage /> },
       { path: "/", element: <ProfilePage /> },
+      { path: "/edit", element: <EditProfilePage /> },
     ],
   },
   ...COMMON_ROUTES,
