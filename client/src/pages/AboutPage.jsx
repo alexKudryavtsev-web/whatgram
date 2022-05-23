@@ -1,4 +1,4 @@
-import { Box, Heading, Link, Text, VStack } from "@chakra-ui/react";
+import { Box, Link, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 
 import WithIndent from "../components/ui/withIndent/WithIndent.jsx";

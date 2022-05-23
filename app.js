@@ -12,6 +12,7 @@ import errorMiddleware from "./middleware/error.middleware.js";
 import userRouter from "./routes/user.routes.js";
 import authRouter from "./routes/auth.routes.js";
 import contactRouter from "./routes/contact.routes.js";
+import conversationRouter from "./routes/conversation.routes.js";
 
 const CORS_OPTIONS = {
   origin: config.get("CLIENT_URL"),
@@ -31,10 +32,11 @@ app.use(cors(CORS_OPTIONS));
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/contact", contactRouter);
+app.use("/api/conversation", conversationRouter);
 
 app.get("/test", (req, res) => res.json("YES"));
 
-app.use(errorMiddleware);
+// app.use(errorMiddleware);
 
 const server = http.createServer(app);
 
